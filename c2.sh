@@ -58,11 +58,20 @@ echo 'deb https://debian.neo4j.com stable 4.0' > /etc/apt/sources.list.d/neo4j.l
 sudo apt-get update
 apt-get install -y apt-transport-https neo4j
 systemctl stop neo4j
-cd /usr/bin
-#./neo4j console
+
+
+# cd /usr/bin
+# sudo ./neo4j console
 #vim /etc/neo4j/neo4j.conf
 #uncomment #dbms.default_listen_address=0.0.0.0
 #systemctl start neo4j
+
+# neo4j tunneling
+# localhost:7687
+# http://localhost:7474/
+
+
+
 
 echo "[+][+] wedoalittlebit(misc)oftooling" >> /status.txt
 git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
