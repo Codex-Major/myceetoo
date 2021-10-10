@@ -19,7 +19,10 @@ fi
 echo "[+][+] Updates & apt packages" >> /status.txt
 echo "[+] Installing essentialls" >> /status.txt
 apt-get update -y
-apt-get install -y proxychains4 smbclient mlocate mingw-w64 binutils-mingw-w64 g++-mingw-w64 nmap p7zip-full p7zip-rar git wget vim tmux python3-pip remmina psmisc rubygems libssl-dev liblzo2-dev libpam0g-dev make build-essential rdesktop
+apt-get install -y proxychains4 smbclient mlocate mingw-w64 binutils-mingw-w64 g++-mingw-w64 nmap p7zip-full p7zip-rar git wget vim tmux python3-pip remmina psmisc rubygems libssl-dev liblzo2-dev libpam0g-dev make build-essential rdesktop qpdf 
+
+echo "[+] CTF shit" >> /status.txt
+apt-get install -y binwalk exiftool pigs
 
 echo "[+][+] Tools " >> /status.txt
 echo "[+] Metasploit Install" >> /status.txt
